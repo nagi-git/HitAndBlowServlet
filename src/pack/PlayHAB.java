@@ -2,6 +2,7 @@ package pack;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,10 +40,17 @@ public class PlayHAB extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 
+		// 送信したinputAnswerの取得
 		String inputAnswer = request.getParameter("inputAnswer");
+
+		// セッションオブジェクトの取得
 		HttpSession session = request.getSession();
 
+		// セッションに値を保存
 		session.setAttribute("inputanswer", inputAnswer);
+
+		RequestDispatcher dispatcher = null;
+		dispatcher = request.getRequestDispatcher("playScreen");
 	}
 
 }
