@@ -1,4 +1,4 @@
-package hitAndBlow;
+package controller;
 
 import java.util.Scanner;
 

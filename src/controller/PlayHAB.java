@@ -38,14 +38,22 @@ public class PlayHAB extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// セッションに値を保存
+		int turnCount = 0;
+		int hitCount = 0;
+		int blowCount = 0;
+
+		session.setAttribute("turncount", turnCount);
 		session.setAttribute("inputanswer", inputAnswer);
+		session.setAttribute("hitcount", hitCount);
+		session.setAttribute("blowcount", blowCount);
 
 		// 1度だけ DataManager オブジェクトを生成
 		if(dbm == null){
 			dbm = new ResultDAO();
 		}
 
-		dbm.setWriting(Integer.parseInt(inputAnswer),);
+
+		dbm.setWriting(turnCount, Integer.parseInt(inputAnswer), hitCount, blowCount);
 
 		dispatcher = request.getRequestDispatcher("playScreen");
 	}

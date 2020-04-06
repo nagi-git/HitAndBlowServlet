@@ -1,5 +1,9 @@
 package hitAndBlow;
 
+import controller.Answer;
+import controller.Count;
+import controller.Input;
+
 /**
  * ヒットアンドブロウを実行するクラス
  */

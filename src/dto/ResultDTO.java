@@ -2,7 +2,7 @@ package dto;
 
 //書き込み内容を保持するクラス
 public class ResultDTO {
-	private int turnNum;	// 回数
+	private int turnCount;	// 回数
 	private int inputAnswer;		// 入力した回答
 	private int hitCount;		// ヒット数
 	private int blowCount;		// ブロー数
@@ -11,20 +11,20 @@ public class ResultDTO {
 
 	}
 
-	public ResultDTO(int turnNum, int inputAnswer, int hitCount, int blowCount) {
-		this.turnNum = turnNum;
+	public ResultDTO(int turnCount, int inputAnswer, int hitCount, int blowCount) {
+		this.turnCount = turnCount;
 		this.inputAnswer = inputAnswer;
 		this.hitCount = hitCount;
 		this.blowCount = blowCount;
 	}
 
 	// 各メンバ変数の getter および setter
-	public int getTurnNum() {
-		return turnNum;
+	public int getTurnCount() {
+		return turnCount;
 	}
 
-	public void setTurnNum(int turnNum) {
-		this.turnNum = turnNum;
+	public void setTurnCount(int turnCount) {
+		this.turnCount = turnCount;
 	}
 
 	public int getInputAnswer() {

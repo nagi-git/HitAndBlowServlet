@@ -1,4 +1,4 @@
-package hitAndBlow;
+package controller;
 
 /**
  * ヒットとブロウを数えるクラス
