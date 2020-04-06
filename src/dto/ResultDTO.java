@@ -1,4 +1,4 @@
-package pack;
+package dto;
 
 //書き込み内容を保持するクラス
 public class ResultDTO {
