@@ -1,14 +1,15 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dto.ResultDTO;
 
 public class ResultDAO {
-	private ArrayList<ResultDTO> resultList;	// 登録ユーザ情報リスト
+	private List<ResultDTO> resultList = new ArrayList<>();	// 登録ユーザ情報リスト
 
 	// 書き込み内容リストの getter
-	public ArrayList<ResultDTO> getResultDTO() {
+	public List<ResultDTO> getResultList() {
 		return resultList;
 	}
 

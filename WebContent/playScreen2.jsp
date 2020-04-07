@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,8 +30,6 @@
 	</div>
 
 	<div>
-		<%-- セッションスコープにある ArrayList 型のオブジェクトを参照 --%>
-		<jsp:useBean id="results" scope="session" type="java.util.List<dto.ResultDTO>" />
 		<table class="table table-striped table-bordered">
 			<tr>
 				<th class="text-center">回数</th>
@@ -40,13 +37,16 @@
 				<th class="text-center">HIT</th>
 				<th class="text-center">BLOW</th>
 			</tr>
-
+			<%-- セッションスコープにある ArrayList 型のオブジェクトを参照 --%>
+			<jsp:useBean id="results" scope="session" type="java.util.ArrayList<dto.ResultDTO>" />
 			<%-- リストにある要素の数だけ繰り返し --%>
 			<c:forEach var="result" items="${results}">
-				<tr>
-					<td class="text-center">回目</td>
-					<td class="text-center">${result.inputAnswer}</td>
-				</tr>
+			<tr>
+				<td class="text-center">回目</td>
+				<td class="text-center">${result.inputAnswer}</td>
+				<td class="text-center">2</td>
+				<td class="text-center">1</td>
+			</tr>
 			</c:forEach>
 		</table>
 	</div>

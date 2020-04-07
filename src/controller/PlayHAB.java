@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ResultDAO;
+import dto.ResultDTO;
 
 @WebServlet("/play")
 public class PlayHAB extends HttpServlet {
@@ -31,7 +33,7 @@ public class PlayHAB extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// 送信したinputAnswerの取得
-		String inputAnswer = request.getParameter("inputAnswer");
+		String inputAnswer = request.getParameter("result");
 		RequestDispatcher dispatcher;
 
 		// セッションオブジェクトの取得
@@ -47,15 +49,21 @@ public class PlayHAB extends HttpServlet {
 		session.setAttribute("hitcount", hitCount);
 		session.setAttribute("blowcount", blowCount);
 
-		// 1度だけ DataManager オブジェクトを生成
+		// 1度だけ ResultDAO オブジェクトを生成
 		if(dbm == null){
 			dbm = new ResultDAO();
 		}
 
-
 		dbm.setWriting(turnCount, Integer.parseInt(inputAnswer), hitCount, blowCount);
 
-		dispatcher = request.getRequestDispatcher("playScreen");
+		// 書き込み内容追加後のリストを取得
+		List<ResultDTO> list = dbm.getResultList();
+
+		// リストをセッションに保存
+		session.setAttribute("results", list);
+
+		dispatcher = request.getRequestDispatcher("playScreen.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
