@@ -44,10 +44,37 @@ public class PlayHAB extends HttpServlet {
 		int hitCount = 0;
 		int blowCount = 0;
 
+		for(int i = 1; !isFinished(hitCount); i++) {
+			turnCount += 1;
+			System.out.println(turnCount);
+
+			// 乱数を取得する
+			int[] correctAnswer = Answer.createCorrectAnswer();
+
+			// ヒットの数を取得する
+			hitCount = Count.countHit(correctAnswer, Integer.parseInt(inputAnswer));
+			System.out.println("ヒット：" + hitCount);
+
+			// ブロウの数を取得する
+			blowCount = Count.countBlow(correctAnswer, inputAnswer);
+			System.out.println("ブロー：" + blowCount);
+
+		}
+
+		private static boolean isFinished(int hitCount) {
+			if (hitCount >= 4) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
 		session.setAttribute("turncount", turnCount);
 		session.setAttribute("inputanswer", inputAnswer);
 		session.setAttribute("hitcount", hitCount);
 		session.setAttribute("blowcount", blowCount);
+
 
 		// 1度だけ ResultDAO オブジェクトを生成
 		if(dbm == null){

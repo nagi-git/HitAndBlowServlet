@@ -30,25 +30,29 @@
 		</form>
 	</div>
 
-	<div>
-		<%-- セッションスコープにある ArrayList 型のオブジェクトを参照 --%>
-		<jsp:useBean id="results" scope="session" type="java.util.List<dto.ResultDTO>" />
-		<table class="table table-striped table-bordered">
-			<tr>
-				<th class="text-center">回数</th>
-				<th class="text-center">入力値</th>
-				<th class="text-center">HIT</th>
-				<th class="text-center">BLOW</th>
-			</tr>
-
-			<%-- リストにある要素の数だけ繰り返し --%>
-			<c:forEach var="result" items="${results}">
+	<c:if test="${results != null}">
+		<div>
+			<%-- セッションスコープにある ArrayList 型のオブジェクトを参照 --%>
+			<jsp:useBean id="results" scope="session" type="java.util.List<dto.ResultDTO>" />
+			<table class="table table-striped table-bordered">
 				<tr>
-					<td class="text-center">回目</td>
-					<td class="text-center">${result.inputAnswer}</td>
+					<th class="text-center">回数</th>
+					<th class="text-center">入力値</th>
+					<th class="text-center">HIT</th>
+					<th class="text-center">BLOW</th>
 				</tr>
-			</c:forEach>
-		</table>
-	</div>
+
+				<%-- リストにある要素の数だけ繰り返し --%>
+				<c:forEach var="result" items="${results}">
+					<tr>
+						<td class="text-center">${result.turnCount}回目</td>
+						<td class="text-center">${result.inputAnswer}</td>
+						<td class="text-center">${result.hitCount}</td>
+						<td class="text-center">${result.blowCount}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</c:if>
 </body>
 </html>
