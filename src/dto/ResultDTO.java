@@ -3,7 +3,7 @@ package dto;
 //書き込み内容を保持するクラス
 public class ResultDTO {
 	private int turnCount;	// 回数
-	private int inputAnswer;		// 入力した回答
+	private String inputAnswer;		// 入力した回答
 	private int hitCount;		// ヒット数
 	private int blowCount;		// ブロー数
 
@@ -11,7 +11,7 @@ public class ResultDTO {
 
 	}
 
-	public ResultDTO(int turnCount, int inputAnswer, int hitCount, int blowCount) {
+	public ResultDTO(int turnCount, String inputAnswer, int hitCount, int blowCount) {
 		this.turnCount = turnCount;
 		this.inputAnswer = inputAnswer;
 		this.hitCount = hitCount;
@@ -27,11 +27,11 @@ public class ResultDTO {
 		this.turnCount = turnCount;
 	}
 
-	public int getInputAnswer() {
+	public String getInputAnswer() {
 		return inputAnswer;
 	}
 
-	public void setInputAnswer(int inputAnswer) {
+	public void setInputAnswer(String inputAnswer) {
 		this.inputAnswer = inputAnswer;
 	}
 

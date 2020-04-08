@@ -16,8 +16,12 @@ import dto.ResultDTO;
 
 @WebServlet("/play")
 public class PlayHAB extends HttpServlet {
+	// 乱数を取得する
+	int[] correctAnswer = Answer.createCorrectAnswer();
+
 	private static final long serialVersionUID = 1L;
-	private ResultDAO dbm; // 結果情報管理クラス
+	private ResultDAO dbm = new ResultDAO(); // 結果情報管理クラス
+	int turnCount = 0;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,49 +43,19 @@ public class PlayHAB extends HttpServlet {
 		// セッションオブジェクトの取得
 		HttpSession session = request.getSession();
 
+		// 送信したinputAnswerの取得
+		int[] arrayinputAnswer = Input.inputAnswer(inputAnswer);
+
+
+		turnCount++;
+
+		// ヒットの数を取得する
+		int hitCount = Count.countHit(correctAnswer, arrayinputAnswer);
+		// ブロウの数を取得する
+		int blowCount = Count.countBlow(correctAnswer, arrayinputAnswer);
+
 		// セッションに値を保存
-		int turnCount = 0;
-		int hitCount = 0;
-		int blowCount = 0;
-
-		for(int i = 1; !isFinished(hitCount); i++) {
-			turnCount += 1;
-			System.out.println(turnCount);
-
-			// 乱数を取得する
-			int[] correctAnswer = Answer.createCorrectAnswer();
-
-			// ヒットの数を取得する
-			hitCount = Count.countHit(correctAnswer, Integer.parseInt(inputAnswer));
-			System.out.println("ヒット：" + hitCount);
-
-			// ブロウの数を取得する
-			blowCount = Count.countBlow(correctAnswer, inputAnswer);
-			System.out.println("ブロー：" + blowCount);
-
-		}
-
-		private static boolean isFinished(int hitCount) {
-			if (hitCount >= 4) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-		session.setAttribute("turncount", turnCount);
-		session.setAttribute("inputanswer", inputAnswer);
-		session.setAttribute("hitcount", hitCount);
-		session.setAttribute("blowcount", blowCount);
-
-
-		// 1度だけ ResultDAO オブジェクトを生成
-		if(dbm == null){
-			dbm = new ResultDAO();
-		}
-
-		dbm.setWriting(turnCount, Integer.parseInt(inputAnswer), hitCount, blowCount);
+		dbm.setWriting(turnCount, inputAnswer, hitCount, blowCount);
 
 		// 書き込み内容追加後のリストを取得
 		List<ResultDTO> list = dbm.getResultList();

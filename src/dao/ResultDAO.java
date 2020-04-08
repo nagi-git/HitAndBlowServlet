@@ -14,7 +14,7 @@ public class ResultDAO {
 	}
 
 	// ログインユーザ情報と書き込み内容を受け取り、リストに追加する
-	public void setWriting(int turnCount, int inputAnswer, int hitCount, int blowCount) {
+	public void setWriting(int turnCount, String inputAnswer, int hitCount, int blowCount) {
 		ResultDTO result = new ResultDTO();
 		result.setTurnCount(turnCount);
 		result.setInputAnswer(inputAnswer);

@@ -28,9 +28,7 @@ public class Answer {
         //4つ取り出しcorrectAnswerNum配列に入れる
         for(int i = 0; i < correctAnswerNum.length; i++){
         	correctAnswerNum[i] = list.get(i);
-            System.out.print(correctAnswerNum[i]); // TODO 後で削除する
         }
-        System.out.println(); // TODO 後で削除する
         return correctAnswerNum;
 	}
 
